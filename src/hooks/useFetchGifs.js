@@ -1,0 +1,16 @@
+import { useState, useEffect } from 'react/cjs/react.development';
+import getGifs from '../helpers/getGifs';
+
+export const useFetchGifs = (category) => {
+    const [state, setState] = useState({
+        data: [],
+        loading: true,
+    }); 
+
+    useEffect(() => {
+        getGifs(category)
+        .then((x) => setState({data: x, loading: false}));
+    }, [category])
+
+    return state;
+}
